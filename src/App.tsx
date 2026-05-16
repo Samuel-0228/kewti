@@ -2,6 +2,8 @@ import { useState } from 'react';
 import KewtiPage from './kewtiPage/KewtiPage';
 import KewtiDocumentation from './kewti-documentation/component';
 import KewtiSlidesPage from './kewtiPage/SlidesPage';
+import { KewtiCursor } from '@/components/kewti/KewtiCursor';
+import { ThemeToggle } from '@/components/kewti/ThemeToggle';
 
 export function App() {
   const [route, setRoute] = useState<'home' | 'docs' | 'slides'>('home');
@@ -16,18 +18,16 @@ export function App() {
           }}
         />
       ) : route === 'slides' ? (
-        <KewtiSlidesPage onBack={() => setRoute('home')} />
+        <div className="kewti-noise kewti-custom-cursor relative min-h-screen bg-background font-body text-foreground">
+          <KewtiCursor />
+          <KewtiSlidesPage onBack={() => setRoute('home')} />
+          <ThemeToggle />
+        </div>
       ) : (
-        <div className="min-h-screen bg-background text-foreground">
-          <header className="flex items-center justify-between px-6 py-3 border-b border-border bg-card sticky top-0 z-50">
-            <div>
-              <span className="text-sm font-semibold">Kewti Documentation</span>
-            </div>
-            <div />
-          </header>
-          <main>
-            <KewtiDocumentation onBack={() => setRoute('home')} />
-          </main>
+        <div className="kewti-noise kewti-custom-cursor relative min-h-screen bg-background font-body text-foreground">
+          <KewtiCursor />
+          <KewtiDocumentation onBack={() => setRoute('home')} />
+          <ThemeToggle />
         </div>
       )}
     </>

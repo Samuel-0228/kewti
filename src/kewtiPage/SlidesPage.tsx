@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ExternalLink, Package, Sparkles, Terminal } from 'lucide-react';
+import { BackgroundOrbs } from '@/components/kewti/BackgroundOrbs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import KewtiMascot from '../kewti-mascot/component.tsx';
@@ -37,7 +38,7 @@ const SLIDE_SECTIONS: SlideSection[] = [
 
 function CodeBlock({ code }: { code: string }) {
   return (
-    <pre className="overflow-x-auto rounded-xl border border-zinc-200 bg-white p-4 text-xs leading-relaxed text-zinc-900 shadow-sm">
+    <pre className="overflow-x-auto rounded-xl border border-[var(--kewti-border)] bg-[var(--kewti-surface)] p-4 font-mono-kewti text-xs leading-relaxed text-[var(--kewti-cream)]">
       <code>{code}</code>
     </pre>
   );
@@ -101,7 +102,7 @@ function SampleCard({
     >
       <Card className="group bg-white/95 text-zinc-950 shadow-lg backdrop-blur transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl">
         <CardHeader>
-          <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-600">
+          <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--kewti-green)]">
             <span>Slide {String(index).padStart(2, '0')}</span>
             <span className="h-px flex-1 bg-emerald-500/30" />
             <span>{title}</span>
@@ -160,8 +161,9 @@ export default function KewtiSlidesPage({ onBack }: Props) {
   ];
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.14),transparent_30%),linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] text-zinc-950">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-background text-foreground">
+      <BackgroundOrbs />
+      <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-8">
         <header className="sticky top-4 z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-zinc-200/80 bg-white/95 px-4 py-3 shadow-lg backdrop-blur">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-950 text-zinc-50">
@@ -188,7 +190,7 @@ export default function KewtiSlidesPage({ onBack }: Props) {
           <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <Card className="overflow-hidden border-zinc-200/80 bg-white/90 text-zinc-950 shadow-lg backdrop-blur animate-in fade-in slide-in-from-bottom-6 duration-700">
               <CardContent className="space-y-6 p-6 sm:p-8 lg:p-10">
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700 motion-safe:animate-pulse">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(46,204,113,0.25)] bg-[rgba(46,204,113,0.1)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--kewti-green)] motion-safe:animate-pulse">
                   <Sparkles className="h-3.5 w-3.5" />
                   Ethiopia-first open source component library
                 </div>
@@ -214,7 +216,7 @@ export default function KewtiSlidesPage({ onBack }: Props) {
                     <button key={section.id} onClick={() => scrollToSection(section.id)} className={[
                       'rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300',
                       activeSection === section.id
-                        ? 'border-emerald-500 bg-emerald-500/10 text-emerald-700'
+                        ? 'border-emerald-500 bg-emerald-500/10 text-[var(--kewti-green)]'
                         : 'border-zinc-200 bg-white text-zinc-500 hover:border-emerald-400 hover:text-zinc-900',
                     ].join(' ')}>
                       {section.nav}

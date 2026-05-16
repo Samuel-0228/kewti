@@ -31,9 +31,9 @@ const CodeBlock = ({ code }: { code: string }) => {
   };
 
   return (
-    <div className="relative border border-border bg-card my-4 md:my-6 rounded-md shadow-sm w-full overflow-hidden">
-      <div className="flex items-center justify-between px-3 md:px-4 py-2 border-b border-border bg-muted/50">
-        <span className="text-[10px] md:text-xs font-mono text-muted-foreground">example code</span>
+    <div className="kewti-install-box relative my-4 w-full overflow-hidden md:my-6">
+      <div className="mb-0 flex items-center justify-between border-b border-[var(--kewti-border)] px-3 py-2 md:px-4">
+        <span className="font-mono-kewti text-[10px] uppercase tracking-wider text-[var(--kewti-muted)] md:text-xs">example code</span>
         <button
           onClick={copyToClipboard}
           className="text-muted-foreground hover:text-foreground transition-colors p-1"
@@ -53,7 +53,7 @@ const CodeBlock = ({ code }: { code: string }) => {
 
 const SectionHeader = ({ title, description }: { title: string; description: string }) => (
   <div className="mb-6 md:mb-8 border-b border-border pb-4 md:pb-6">
-    <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2 tracking-tight">
+    <h1 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2 tracking-tight">
       {title}
     </h1>
     <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{description}</p>
@@ -61,7 +61,7 @@ const SectionHeader = ({ title, description }: { title: string; description: str
 );
 
 const ComponentPreview = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-6 md:mt-8 border border-border bg-card p-4 sm:p-8 md:p-12 relative rounded-md shadow-sm overflow-x-auto">
+  <div className="kewti-comp-card relative mt-6 overflow-x-auto p-4 sm:p-8 md:mt-8 md:p-12">
     <div className="absolute top-0 left-0 bg-muted/50 text-muted-foreground text-[10px] md:text-xs px-2 py-1 border-b border-r border-border rounded-br-md">
       Preview
     </div>
@@ -328,7 +328,7 @@ const [date, setDate] = useState(null);
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-muted flex flex-col md:flex-row relative">
+    <div className="relative flex min-h-screen flex-col bg-background font-body text-foreground md:flex-row">
       <div className="md:hidden flex items-center justify-between p-4 border-b border-border bg-background sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-foreground text-background shadow-sm">

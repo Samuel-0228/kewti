@@ -1,5 +1,5 @@
 import { useReveal } from '@/components/kewti/useReveal';
-import { BackgroundOrbs } from '@/components/kewti/BackgroundOrbs';
+import { DottedSurface } from '@/components/ui/dotted-surface';
 import { ComponentTicker } from '@/components/kewti/ComponentTicker';
 import { InstallBox } from '@/components/kewti/InstallBox';
 import { KewtiCursor } from '@/components/kewti/KewtiCursor';
@@ -20,12 +20,13 @@ const COMPONENTS = [
   { name: 'KewtiIcons', description: 'Comming soon ..', glow: 'glow-red', accent: 'text-[var(--kewti-red)]' },
   { name: 'EthiopianCalendar', description: 'Calendar implementation supporting Gregorian-to-Habeshan date conversions.', glow: 'glow-green', accent: 'text-[var(--kewti-green)]' },
   { name: 'TransactionValidator', description: 'Payment parsing and validation flows for CBE and Telebirr.', glow: 'glow-gold', accent: 'text-[var(--kewti-gold)]' },
+  { name: 'DottedSurface', description: 'A beautiful animated 3D dotted surface background using Three.js.', glow: 'glow-red', accent: 'text-[var(--kewti-red)]' },
 ] as const;
 
 export default function KewtiPage({ onNavigate }: NavProps) {
   const { ref: sectionRef, visible: sectionVisible } = useReveal<HTMLElement>();
 
-  const smoothScrollTo = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
+  const smoothScrollTo = (e: React.MouseEvent<Element>, targetId: string) => {
     e.preventDefault();
     document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -42,11 +43,11 @@ export default function KewtiPage({ onNavigate }: NavProps) {
   };
 
   return (
-    <div className="kewti-noise kewti-custom-cursor relative min-h-screen bg-background font-body text-foreground selection:bg-[var(--kewti-cream)] selection:text-[var(--kewti-black)]">
+    <div className="kewti-custom-cursor relative min-h-screen font-body text-foreground selection:bg-[var(--kewti-cream)] selection:text-[var(--kewti-black)]">
+      <DottedSurface />
       <KewtiCursor />
-      <BackgroundOrbs />
 
-      <nav className="kewti-nav fixed inset-x-0 top-0 z-[100] flex animate-kewti-slide-down items-center justify-between px-4 py-5 sm:px-8 lg:px-12">
+      <nav className="kewti-nav fixed inset-x-0 top-0 z-[100] flex animate-kewti-slide-down items-center justify-between px-4 py-5 sm:px-8 lg:px-12 relative z-20">
         <a href="#" className="flex items-center gap-2.5 font-display text-xl font-extrabold tracking-tight text-[var(--kewti-cream)] no-underline">
           <span className="relative grid size-7 place-items-center overflow-hidden rounded-md border-2 border-[var(--kewti-cream)]">
             <span className="size-2.5 animate-kewti-pulse-dot rounded-full bg-[var(--kewti-green)]" />
@@ -78,7 +79,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
         </ul>
       </nav>
 
-      <section className="relative grid min-h-screen grid-cols-1 gap-8 px-4 pb-16 pt-24 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-12 lg:pt-28 xl:px-16">
+      <section className="relative z-10 grid min-h-screen grid-cols-1 gap-8 px-4 pb-16 pt-24 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-12 lg:pt-28 xl:px-16">
         <div className="flex flex-col justify-center py-8 lg:py-16 lg:pr-8">
           <div
             className="mb-8 inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(46,204,113,0.25)] bg-[rgba(46,204,113,0.1)] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[var(--kewti-green)] opacity-0 animate-kewti-fade-up"
@@ -154,7 +155,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
 
       <ComponentTicker />
 
-      <section id="docs" className="scroll-mt-24 px-4 py-4 sm:px-8 lg:px-12 xl:px-16">
+      <section id="docs" className="relative z-10 scroll-mt-24 px-4 py-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="kewti-section-divider" />
       </section>
 
@@ -180,12 +181,22 @@ export default function KewtiPage({ onNavigate }: NavProps) {
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {COMPONENTS.map((comp, index) => (
-            <ComponentCard key={comp.name} {...comp} delay={index * 0.1} />
+            <div 
+              key={comp.name} 
+              onClick={() => {
+                if (comp.name === 'DottedSurface') {
+                  onNavigate?.('dotted-surface');
+                }
+              }}
+              className="cursor-pointer"
+            >
+              <ComponentCard {...comp} delay={index * 0.1} />
+            </div>
           ))}
         </div>
       </section>
 
-      <footer className="flex flex-wrap items-center justify-between gap-6 border-t border-[var(--kewti-border)] px-4 py-12 sm:px-8 lg:px-12 xl:px-16">
+      <footer className="relative z-10 flex flex-wrap items-center justify-between gap-6 border-t border-[var(--kewti-border)] px-4 py-12 sm:px-8 lg:px-12 xl:px-16">
         <div>
           <p className="font-display text-[28px] font-extrabold tracking-tight">Kewti</p>
           <p className="mt-2 text-[13px] text-[var(--kewti-muted)]">open source Ethiopian component library</p>
@@ -216,13 +227,11 @@ function ComponentCard({
   name,
   description,
   glow,
-  accent,
   delay,
 }: {
   name: string;
   description: string;
   glow: string;
-  accent: string;
   delay: number;
 }) {
   const hoverTone =

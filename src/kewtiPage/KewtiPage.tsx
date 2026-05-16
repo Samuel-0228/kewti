@@ -46,32 +46,52 @@ export default function KewtiPage({ onNavigate }: NavProps) {
     <div className="kewti-custom-cursor relative min-h-screen bg-background font-body text-foreground selection:bg-[var(--kewti-cream)] selection:text-[var(--kewti-black)]">
       <KewtiCursor />
 
-      <nav className="kewti-nav fixed inset-x-0 top-0 z-[100] flex animate-kewti-slide-down items-center justify-between px-4 py-5 sm:px-8 lg:px-12 relative z-20">
-        <a href="#" className="flex items-center gap-2.5 font-display text-xl font-extrabold tracking-tight text-[var(--kewti-cream)] no-underline">
-          <span className="relative grid size-7 place-items-center overflow-hidden rounded-md border-2 border-[var(--kewti-cream)]">
-            <span className="size-2.5 animate-kewti-pulse-dot rounded-full bg-[var(--kewti-green)]" />
+      <nav className="kewti-nav fixed inset-x-0 top-0 z-50 flex animate-kewti-slide-down items-center justify-between px-4 py-3 sm:px-8 lg:px-12 backdrop-blur-md">
+        <a
+          href="#"
+          className="flex items-center gap-2.5 font-display text-lg font-extrabold tracking-tight text-[var(--kewti-cream)] no-underline"
+        >
+          <span className="relative grid size-6 place-items-center overflow-hidden rounded-sm border border-[var(--kewti-cream)]">
+            <span className="size-2 animate-kewti-pulse-dot rounded-full bg-[var(--kewti-green)]" />
           </span>
           Kewti
         </a>
 
-        <ul className="hidden items-center gap-8 list-none md:flex">
+        <ul className="hidden items-center gap-6 list-none md:flex">
           <li>
-            <a href="#components" onClick={(e) => smoothScrollTo(e, 'components')} className="text-[12px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]">
+            <a
+              href="#components"
+              onClick={(e) => smoothScrollTo(e, 'components')}
+              className="text-[11px] font-medium uppercase tracking-wider text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]"
+            >
               Components
             </a>
           </li>
           <li>
-            <button type="button" onClick={goDocs} className="text-[12px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] transition-colors hover:text-[var(--kewti-cream)] bg-transparent border-0 cursor-pointer">
+            <button
+              type="button"
+              onClick={goDocs}
+              className="text-[11px] font-medium uppercase tracking-wider text-[var(--kewti-muted)] transition-colors hover:text-[var(--kewti-cream)] bg-transparent border-0 cursor-pointer"
+            >
               Docs
             </button>
           </li>
           <li>
-            <a href="https://github.com/coderade1905/GDG" target="_blank" rel="noreferrer" className="text-[12px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]">
+            <a
+              href="https://github.com/coderade1905/GDG"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[11px] font-medium uppercase tracking-wider text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]"
+            >
               GitHub
             </a>
           </li>
           <li>
-            <a href="#docs" onClick={goDocs} className="kewti-btn kewti-btn-primary !px-4 !py-1.5 !text-[12px] !font-medium">
+            <a
+              href="#docs"
+              onClick={goDocs}
+              className="kewti-btn kewti-btn-primary !px-3 !py-1 !text-[11px] !font-medium"
+            >
               Get Started →
             </a>
           </li>
@@ -80,6 +100,28 @@ export default function KewtiPage({ onNavigate }: NavProps) {
 
       <section className="relative min-h-screen overflow-hidden grid grid-cols-1 gap-8 px-4 pb-16 pt-24 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-12 lg:pt-28 xl:px-16">
         <DottedSurface />
+        
+        {/* Technical Vignette & Split Line */}
+        <div className="pointer-events-none absolute inset-0 z-[1] opacity-100">
+          {/* Radial Vignette */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse at center, transparent 40%, var(--background) 85%)'
+            }}
+          />
+          {/* Vertical Split Line */}
+          <div className="absolute inset-y-0 left-1/2 w-px bg-white/[0.05] hidden lg:block" />
+        </div>
+
+        {/* Corner Bracket Markers */}
+        <div className="pointer-events-none absolute inset-x-4 inset-y-24 z-[2] sm:inset-x-8 lg:inset-x-12 xl:inset-x-16">
+          <div className="absolute left-0 top-0 size-[10px] border-l border-t border-white/10" />
+          <div className="absolute right-0 top-0 size-[10px] border-r border-t border-white/10" />
+          <div className="absolute bottom-0 left-0 size-[10px] border-l border-bottom border-white/10" />
+          <div className="absolute bottom-0 right-0 size-[10px] border-r border-bottom border-white/10" />
+        </div>
+
         <div className="relative z-10 flex flex-col justify-center py-8 lg:py-16 lg:pr-8">
           <div
             className="mb-8 inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(46,204,113,0.25)] bg-[rgba(46,204,113,0.1)] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[var(--kewti-green)] opacity-0 animate-kewti-fade-up"

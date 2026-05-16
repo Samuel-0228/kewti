@@ -12,6 +12,7 @@ export function App() {
 
   return (
     <>
+      <div className="kewti-grid-background" />
       {route === 'home' && (
         <KewtiPage
           onNavigate={(r: string) => {

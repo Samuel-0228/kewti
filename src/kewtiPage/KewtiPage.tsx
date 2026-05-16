@@ -169,15 +169,12 @@ export default function KewtiPage({ onNavigate }: NavProps) {
       >
         <div className="mb-12 flex flex-col gap-6 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="mb-3 font-mono-kewti text-[11px] uppercase tracking-[0.15em] text-[var(--kewti-green)]">// components</p>
-            <h2 className="font-display text-[clamp(2rem,4vw,3.25rem)] font-extrabold leading-none tracking-[-0.04em]">
-              Component library for{' '}
-              <span>
-                <span className="text-[var(--kewti-green)]">Ethiopian</span> Apps
-              </span>
+            <p className="mb-3 font-mono-kewti text-[11px] uppercase tracking-[0.15em] text-white/35">// components</p>
+            <h2 className="font-display text-[clamp(2rem,4vw,3.25rem)] font-extrabold leading-none tracking-[-0.04em] text-[var(--kewti-cream)]">
+              Component library for Ethiopian Apps
             </h2>
-            <p className="mt-3 text-[15px] text-[var(--kewti-muted)]">open source Ethiopian component library</p>
-            <p className="mt-2 text-[15px] text-[var(--kewti-muted)]">Explore the available components in the library.</p>
+            <p className="mt-3 text-[15px] text-white/55">open source Ethiopian component library</p>
+            <p className="mt-2 text-[15px] text-white/45">Explore the available components in the library.</p>
           </div>
         </div>
 
@@ -228,37 +225,60 @@ function ComponentCard({
   accent: string;
   delay: number;
 }) {
+  const hoverTone =
+    glow === 'glow-green'
+      ? 'hover:!border-[rgba(46,204,113,0.36)] hover:shadow-[0_0_0_1px_rgba(46,204,113,0.08),0_10px_30px_rgba(0,0,0,0.24)]'
+      : glow === 'glow-gold'
+        ? 'hover:!border-[rgba(230,168,23,0.34)] hover:shadow-[0_0_0_1px_rgba(230,168,23,0.08),0_10px_30px_rgba(0,0,0,0.24)]'
+        : 'hover:!border-[rgba(232,54,42,0.34)] hover:shadow-[0_0_0_1px_rgba(232,54,42,0.08),0_10px_30px_rgba(0,0,0,0.24)]';
+
+  const hoverAccentBar =
+    glow === 'glow-green'
+      ? 'group-hover:bg-[rgba(46,204,113,0.9)]'
+      : glow === 'glow-gold'
+        ? 'group-hover:bg-[rgba(230,168,23,0.9)]'
+        : 'group-hover:bg-[rgba(232,54,42,0.9)]';
+
+  const hoverAccentIcon =
+    glow === 'glow-green'
+      ? 'group-hover:border-[rgba(46,204,113,0.35)] group-hover:bg-[rgba(46,204,113,0.1)] group-hover:text-[rgba(46,204,113,0.95)]'
+      : glow === 'glow-gold'
+        ? 'group-hover:border-[rgba(230,168,23,0.35)] group-hover:bg-[rgba(230,168,23,0.1)] group-hover:text-[rgba(230,168,23,0.95)]'
+        : 'group-hover:border-[rgba(232,54,42,0.35)] group-hover:bg-[rgba(232,54,42,0.1)] group-hover:text-[rgba(232,54,42,0.95)]';
+
   return (
     <article
-      className="kewti-comp-card opacity-0 animate-kewti-fade-up"
+      className={cn(
+        'kewti-comp-card group relative opacity-0 animate-kewti-fade-up !rounded-[6px] !border !border-white/[0.08] !bg-[#101010] !p-6 !shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:!border-white/20 hover:bg-[#141414]',
+        hoverTone,
+      )}
       style={{ animationDelay: `${delay}s` }}
       tabIndex={0}
     >
+      <div className={cn('absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100', hoverAccentBar)} />
       <div
         className={cn(
-          'kewti-comp-glow',
-          glow === 'glow-green' && 'bg-[linear-gradient(90deg,transparent,var(--kewti-green),transparent)]',
-          glow === 'glow-gold' && 'bg-[linear-gradient(90deg,transparent,var(--kewti-gold),transparent)]',
-          glow === 'glow-red' && 'bg-[linear-gradient(90deg,transparent,var(--kewti-red),transparent)]',
+          'kewti-comp-glow pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100',
+          glow === 'glow-green' && 'group-hover:border-[rgba(46,204,113,0.08)]',
+          glow === 'glow-gold' && 'group-hover:border-[rgba(230,168,23,0.08)]',
+          glow === 'glow-red' && 'group-hover:border-[rgba(232,54,42,0.08)]',
         )}
       />
-      <div className="mb-5 flex items-start justify-between gap-4">
+      <div className="relative mb-5 flex items-start justify-between gap-4">
         <div
           className={cn(
-            'grid size-11 place-items-center rounded-xl border text-lg',
-            glow === 'glow-green' && 'border-[rgba(46,204,113,0.2)] bg-[rgba(46,204,113,0.1)]',
-            glow === 'glow-gold' && 'border-[rgba(230,168,23,0.2)] bg-[rgba(230,168,23,0.1)]',
-            glow === 'glow-red' && 'border-[rgba(232,54,42,0.2)] bg-[rgba(232,54,42,0.1)]',
+            'grid size-10 place-items-center rounded-[5px] border border-white/10 bg-white/[0.03] text-sm text-white/70 transition-all duration-300',
+            hoverAccentIcon,
           )}
         >
           ◆
         </div>
-        <span className="rounded-md border border-[var(--kewti-border)] bg-[rgba(245,240,235,0.03)] px-2.5 py-1 font-mono-kewti text-[10px] text-[var(--kewti-muted)]">
+        <span className="rounded-[5px] border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono-kewti text-[10px] text-white/45 transition-colors duration-300 group-hover:border-white/15 group-hover:text-white/60">
           &lt;{name} /&gt;
         </span>
       </div>
-      <h3 className={cn('mb-2 font-display text-lg font-bold tracking-tight', accent)}>{name}</h3>
-      <p className="text-[13px] leading-relaxed text-[var(--kewti-muted)]">{description}</p>
+      <h3 className="mb-2 font-display text-lg font-bold tracking-tight text-[var(--kewti-cream)]">{name}</h3>
+      <p className="text-[13px] leading-relaxed text-white/50">{description}</p>
     </article>
   );
 }

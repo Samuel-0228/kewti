@@ -43,8 +43,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
   };
 
   return (
-    <div className="kewti-custom-cursor relative min-h-screen font-body text-foreground selection:bg-[var(--kewti-cream)] selection:text-[var(--kewti-black)]">
-      <DottedSurface />
+    <div className="kewti-custom-cursor relative min-h-screen bg-background font-body text-foreground selection:bg-[var(--kewti-cream)] selection:text-[var(--kewti-black)]">
       <KewtiCursor />
 
       <nav className="kewti-nav fixed inset-x-0 top-0 z-[100] flex animate-kewti-slide-down items-center justify-between px-4 py-5 sm:px-8 lg:px-12 relative z-20">
@@ -57,30 +56,31 @@ export default function KewtiPage({ onNavigate }: NavProps) {
 
         <ul className="hidden items-center gap-8 list-none md:flex">
           <li>
-            <a href="#components" onClick={(e) => smoothScrollTo(e, 'components')} className="text-[13px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]">
+            <a href="#components" onClick={(e) => smoothScrollTo(e, 'components')} className="text-[12px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]">
               Components
             </a>
           </li>
           <li>
-            <button type="button" onClick={goDocs} className="text-[13px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] transition-colors hover:text-[var(--kewti-cream)] bg-transparent border-0 cursor-pointer">
+            <button type="button" onClick={goDocs} className="text-[12px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] transition-colors hover:text-[var(--kewti-cream)] bg-transparent border-0 cursor-pointer">
               Docs
             </button>
           </li>
           <li>
-            <a href="https://github.com/coderade1905/GDG" target="_blank" rel="noreferrer" className="text-[13px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]">
+            <a href="https://github.com/coderade1905/GDG" target="_blank" rel="noreferrer" className="text-[12px] font-normal uppercase tracking-widest text-[var(--kewti-muted)] no-underline transition-colors hover:text-[var(--kewti-cream)]">
               GitHub
             </a>
           </li>
           <li>
-            <a href="#docs" onClick={goDocs} className="kewti-btn kewti-btn-primary !px-5 !py-2 !text-[13px] !font-medium">
+            <a href="#docs" onClick={goDocs} className="kewti-btn kewti-btn-primary !px-4 !py-1.5 !text-[12px] !font-medium">
               Get Started →
             </a>
           </li>
         </ul>
       </nav>
 
-      <section className="relative z-10 grid min-h-screen grid-cols-1 gap-8 px-4 pb-16 pt-24 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-12 lg:pt-28 xl:px-16">
-        <div className="flex flex-col justify-center py-8 lg:py-16 lg:pr-8">
+      <section className="relative min-h-screen overflow-hidden grid grid-cols-1 gap-8 px-4 pb-16 pt-24 sm:px-8 lg:grid-cols-2 lg:gap-0 lg:px-12 lg:pt-28 xl:px-16">
+        <DottedSurface />
+        <div className="relative z-10 flex flex-col justify-center py-8 lg:py-16 lg:pr-8">
           <div
             className="mb-8 inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(46,204,113,0.25)] bg-[rgba(46,204,113,0.1)] px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-widest text-[var(--kewti-green)] opacity-0 animate-kewti-fade-up"
             style={{ animationDelay: '0.3s' }}
@@ -90,7 +90,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
           </div>
 
           <h1
-            className="mb-7 font-display text-[clamp(2.5rem,5.5vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.04em] opacity-0 animate-kewti-fade-up"
+            className="mb-6 font-display text-[clamp(2.2rem,5vw,4.25rem)] font-extrabold leading-[0.95] tracking-[-0.04em] opacity-0 animate-kewti-fade-up"
             style={{ animationDelay: '0.5s' }}
           >
             <span className="block">Component</span>
@@ -104,7 +104,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
           </h1>
 
           <p
-            className="mb-10 max-w-md text-[17px] leading-relaxed text-[var(--kewti-muted)] opacity-0 animate-kewti-fade-up"
+            className="mb-8 max-w-md text-[15px] leading-relaxed text-[var(--kewti-muted)] opacity-0 animate-kewti-fade-up"
             style={{ animationDelay: '0.7s' }}
           >
             Accessible. Customizable. Open Source.
@@ -129,7 +129,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-6 py-8 opacity-0 animate-kewti-fade-in-right lg:py-16">
+        <div className="relative z-10 flex flex-col justify-center gap-6 py-8 opacity-0 animate-kewti-fade-in-right lg:py-16">
           <div className="flex justify-center">
             <KewtiMascot />
           </div>
@@ -142,11 +142,11 @@ export default function KewtiPage({ onNavigate }: NavProps) {
               { value: '100%', label: 'Open Source', color: 'var(--kewti-gold)' },
               { value: 'AM', label: 'Amharic Ready', color: 'var(--kewti-red)' },
             ].map((stat) => (
-              <div key={stat.label} className="kewti-stat-card">
-                <span className="mb-1 block font-display text-[22px] font-extrabold" style={{ color: stat.color }}>
+              <div key={stat.label} className="kewti-stat-card !py-3">
+                <span className="mb-0.5 block font-display text-[18px] font-extrabold" style={{ color: stat.color }}>
                   {stat.value}
                 </span>
-                <span className="text-[11px] uppercase tracking-wider text-[var(--kewti-muted)]">{stat.label}</span>
+                <span className="text-[10px] uppercase tracking-wider text-[var(--kewti-muted)]">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -155,7 +155,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
 
       <ComponentTicker />
 
-      <section id="docs" className="relative z-10 scroll-mt-24 px-4 py-4 sm:px-8 lg:px-12 xl:px-16">
+      <section id="docs" className="relative z-20 bg-background scroll-mt-24 px-4 py-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="kewti-section-divider" />
       </section>
 
@@ -163,7 +163,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
         id="components"
         ref={sectionRef}
         className={cn(
-          'scroll-mt-24 px-4 py-16 sm:px-8 sm:py-24 lg:px-12 xl:px-16',
+          'relative z-20 bg-background scroll-mt-24 px-4 py-16 sm:px-8 sm:py-24 lg:px-12 xl:px-16',
           'kewti-reveal',
           sectionVisible && 'is-visible',
         )}
@@ -181,8 +181,8 @@ export default function KewtiPage({ onNavigate }: NavProps) {
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {COMPONENTS.map((comp, index) => (
-            <div 
-              key={comp.name} 
+            <div
+              key={comp.name}
               onClick={() => {
                 if (comp.name === 'DottedSurface') {
                   onNavigate?.('dotted-surface');
@@ -196,7 +196,7 @@ export default function KewtiPage({ onNavigate }: NavProps) {
         </div>
       </section>
 
-      <footer className="relative z-10 flex flex-wrap items-center justify-between gap-6 border-t border-[var(--kewti-border)] px-4 py-12 sm:px-8 lg:px-12 xl:px-16">
+      <footer className="relative z-20 bg-background flex flex-wrap items-center justify-between gap-6 border-t border-[var(--kewti-border)] px-4 py-12 sm:px-8 lg:px-12 xl:px-16">
         <div>
           <p className="font-display text-[28px] font-extrabold tracking-tight">Kewti</p>
           <p className="mt-2 text-[13px] text-[var(--kewti-muted)]">open source Ethiopian component library</p>
@@ -258,7 +258,7 @@ function ComponentCard({
   return (
     <article
       className={cn(
-        'kewti-comp-card group relative opacity-0 animate-kewti-fade-up !rounded-[6px] !border !border-white/[0.08] !bg-[#101010] !p-6 !shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:!border-white/20 hover:bg-[#141414]',
+        'kewti-comp-card group relative opacity-0 animate-kewti-fade-up !rounded-[6px] !border !border-white/[0.08] !bg-[#101010] !p-5 !shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:!border-white/20 hover:bg-[#141414]',
         hoverTone,
       )}
       style={{ animationDelay: `${delay}s` }}
@@ -276,7 +276,7 @@ function ComponentCard({
       <div className="relative mb-5 flex items-start justify-between gap-4">
         <div
           className={cn(
-            'grid size-10 place-items-center rounded-[5px] border border-white/10 bg-white/[0.03] text-sm text-white/70 transition-all duration-300',
+            'grid size-8 place-items-center rounded-[5px] border border-white/10 bg-white/[0.03] text-xs text-white/70 transition-all duration-300',
             hoverAccentIcon,
           )}
         >
@@ -286,8 +286,8 @@ function ComponentCard({
           &lt;{name} /&gt;
         </span>
       </div>
-      <h3 className="mb-2 font-display text-lg font-bold tracking-tight text-[var(--kewti-cream)]">{name}</h3>
-      <p className="text-[13px] leading-relaxed text-white/50">{description}</p>
+      <h3 className="mb-1.5 font-display text-base font-bold tracking-tight text-[var(--kewti-cream)]">{name}</h3>
+      <p className="text-[12px] leading-relaxed text-white/50">{description}</p>
     </article>
   );
 }
